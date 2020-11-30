@@ -20,7 +20,7 @@
             2.惰性空间释放
         2.2.4 二进制安全
         2.2.5 兼容部分C字符串函数
-#### 第三章 链表
+#### 第三章 链表 
     3.1 链表和链表节点实现
     typedef struct listNode{
         struct listNode * prev;

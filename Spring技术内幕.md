@@ -94,14 +94,13 @@
             完成实例化非懒加载的单例(包括factoryBean)
         先解决bean的后置处理器执行时间问题：
         那么关于依赖注入是在哪里产生的？
-            getBean->doGetBean()
-            解析doGetBean();
-            比如other里注入了个service
-            标记这个实例被创建：
-            shareInstance=getSingleton()->createBean()->doCreateBean()
-            ->populateBean->postProcessPropertyValues()->inject()
-            ->doResolveDependency()->findAutowireCandicates->
-            getBean()->doGetBean();
+            getBean()->doGetBean()->getSingleton()->AbstractAutowireCapableBeanFactory:createBean
+            ->doCreateBean->populateBean
+            ->AuthowiredAnnotationBeanProcessor:postProcessProperty()
+            ->metadata.inject(bean,beanName,pvs)->element.inject(target,beanName,pvs)
+            ->beanFactory.resolveDependency(desc,beanName,autowiredBeanNames,typeConverter)
+            ->doResolveDependency()->DependencyDescriptor:resolveCandidate()->getBean()
+        
                 
             
                 

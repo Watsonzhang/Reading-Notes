@@ -101,7 +101,15 @@
             ->beanFactory.resolveDependency(desc,beanName,autowiredBeanNames,typeConverter)
             ->doResolveDependency()->DependencyDescriptor:resolveCandidate()->getBean()
         
-                
+        关于三级缓存问题：
+            DefaultSingletonBeanRegistry:getSingleton() 其中AbstractBeanFactory继承了DefaultSingletonBeanRegistry
+            所以在AbstractFactory中调用getSingleton
+            1,如果从一级缓存singletonObjects中去获取，取到就直接返回
+            2,如果取不到 或者对象正在创建中从二级缓存中earlySingletonObjects中获取
+            3,还是没获取到则从三级缓存singletonFactory.getObject()获取
+            
+            
+                        
             
                 
             

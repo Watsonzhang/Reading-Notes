@@ -77,6 +77,36 @@
             也实现了BeanFactoryPostProcessor接口，最后执行常规的BeanFactoryPostProcessor：postProcessBeanFactory
             然后执行用户自定义BeanFactoryPostProcessor们;完结撒花。
         registerBeanPostProcessors(beanFactory)解析
+            PostProcessorRegistrationDelegate.registerBeanPostProcessors(beanFactory,this)
+            所以只需要看registerBeanPostProcessors(beanFactory,this)就可
+            从BeanFactory
+            读取系统内置的BeanProcessor 分为PriorityOrdered ordered non三种
+            然后分别注册到factory registerBeanPostProcessors 注册并创建对应实例
+        initMessageSource();
+            初始化消息源
+        initApplicationEventMulticater();
+            初始化事件传播器
+        onRefresh();
+            初始化其他特殊的bean 目前是个空方法
+        registerListeners()
+            注册监听器
+        finishBeanFactoryInitialization(beanFactory)
+            完成实例化非懒加载的单例(包括factoryBean)
+        先解决bean的后置处理器执行时间问题：
+        那么关于依赖注入是在哪里产生的？
+            getBean->doGetBean()
+            解析doGetBean();
+            比如other里注入了个service
+            标记这个实例被创建：
+            shareInstance=getSingleton()->createBean()->doCreateBean()
+            ->populateBean->postProcessPropertyValues()->inject()
+            ->doResolveDependency()->findAutowireCandicates->
+            getBean()->doGetBean();
+                
+            
+                
+            
+            
             
         
            

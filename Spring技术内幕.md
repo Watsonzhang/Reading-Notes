@@ -107,6 +107,17 @@
             1,如果从一级缓存singletonObjects中去获取，取到就直接返回
             2,如果取不到 或者对象正在创建中从二级缓存中earlySingletonObjects中获取
             3,还是没获取到则从三级缓存singletonFactory.getObject()获取
+        再次整理 BeanDefinitionRegistryPostProcessor BeanFactoryPostProcessor 
+    总览：
+    启动收集内置的beanDefinition 到factory的beanDefinitionMap 
+    singletonObjects一级缓存
+    在refresh()调用中invokeBeanFactoryPostProcessors()中,先判断是否实现了BeanDefinition接口，
+    若是首先找出实现了BeanDefinitionRegistryPostProcessor接口的beanNames,
+    内置了ConfigurationClassPostProcessor,首先实例化出来
+     
+               
+            
+           
             
             
                         
